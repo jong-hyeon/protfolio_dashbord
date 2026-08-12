@@ -33,6 +33,6 @@ export function AssetForm({ onSubmit }: AssetFormProps) {
     <div className="space-y-2"><Label htmlFor="quantity">수량</Label><Input id="quantity" name="quantity" type="number" min="0.0001" step="any" required /></div>
     <div className="space-y-2"><Label htmlFor="currentPrice">현재가 (원)</Label><Input id="currentPrice" name="currentPrice" type="number" min="1" step="1" required /></div>
     {error && <p className="text-sm text-destructive md:col-span-2" role="alert">{error}</p>}
-    <Button className="md:col-span-2" disabled={isSubmitting}>{isSubmitting ? "저장 중..." : "자산 추가"}</Button>
+    <Button type="submit" className="md:col-span-2" disabled={isSubmitting}>{isSubmitting ? "저장 중..." : "자산 추가"}</Button>
   </form></CardContent></Card>;
 }
