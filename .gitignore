@@ -1,0 +1,13 @@
+# Git worktrees created for isolated feature development
+.worktrees/
+
+# Local environment values
+.env.local
+
+# Node.js and Next.js build output
+node_modules/
+.next/
+out/
+
+# Test output
+coverage/
