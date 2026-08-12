@@ -31,7 +31,7 @@ export function SignupForm() {
     <div className="space-y-2"><Label htmlFor="password">비밀번호</Label><Input id="password" name="password" type="password" minLength={6} required /></div>
     {error && <p className="text-sm text-destructive" role="alert">{error}</p>}
     {message && <p className="text-sm text-emerald-700" role="status">{message}</p>}
-    <Button className="w-full" disabled={isSubmitting}>{isSubmitting ? "가입 중..." : "회원가입"}</Button>
+    <Button type="submit" className="w-full" disabled={isSubmitting}>{isSubmitting ? "가입 중..." : "회원가입"}</Button>
     <p className="text-center text-sm text-muted-foreground">이미 계정이 있나요? <Link className="font-medium text-foreground underline" href="/login">로그인</Link></p>
   </form>;
 }

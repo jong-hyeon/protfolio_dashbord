@@ -33,7 +33,7 @@ export function LoginForm() {
     <div className="space-y-2"><Label htmlFor="email">이메일</Label><Input id="email" name="email" type="email" required /></div>
     <div className="space-y-2"><Label htmlFor="password">비밀번호</Label><Input id="password" name="password" type="password" minLength={6} required /></div>
     {error && <p className="text-sm text-destructive" role="alert">{error}</p>}
-    <Button className="w-full" disabled={isSubmitting}>{isSubmitting ? "로그인 중..." : "로그인"}</Button>
+    <Button type="submit" className="w-full" disabled={isSubmitting}>{isSubmitting ? "로그인 중..." : "로그인"}</Button>
     <p className="text-center text-sm text-muted-foreground">계정이 없나요? <Link className="font-medium text-foreground underline" href="/signup">회원가입</Link></p>
   </form>;
 }
