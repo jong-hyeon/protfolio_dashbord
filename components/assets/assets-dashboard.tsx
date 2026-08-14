@@ -30,10 +30,10 @@ export function AssetsDashboard() {
     <div className="mt-8 space-y-8 lg:mt-10 lg:space-y-10">
       <PortfolioSummary totalValue={totalValue} />
       <div className="grid gap-8 lg:grid-cols-12">
-        <div className="lg:col-span-4">
+        <div className="min-w-0 lg:col-span-4">
           <AssetForm onSubmit={addAsset} />
         </div>
-        <section className="lg:col-span-8">
+        <section className="min-w-0 lg:col-span-8">
           <Card>
             <CardContent className="space-y-5 p-5 sm:p-6 lg:p-8">
               <div>

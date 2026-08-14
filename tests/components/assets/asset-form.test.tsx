@@ -7,6 +7,17 @@ import { AssetForm } from "@/components/assets/asset-form";
 afterEach(cleanup);
 
 describe("AssetForm", () => {
+  it("disables browser autocomplete for the asset name field", () => {
+    const onSubmit = vi.fn().mockResolvedValue(undefined);
+    render(<AssetForm onSubmit={onSubmit} />);
+
+    const nameInput = screen.getByLabelText("자산 이름");
+
+    expect(nameInput.getAttribute("name")).toBe("assetName");
+    expect(nameInput.getAttribute("autocomplete")).toBe("off");
+    expect(nameInput.closest("form")?.getAttribute("autocomplete")).toBe("off");
+  });
+
   it("submits a complete asset", async () => {
     const onSubmit = vi.fn().mockResolvedValue(undefined);
     const user = userEvent.setup();
