@@ -9,6 +9,7 @@ import type { Asset, CreateAssetInput } from "@/features/assets/asset.types";
 import { AssetForm } from "./asset-form";
 import { AssetTable } from "./asset-table";
 import { PortfolioSummary } from "./portfolio-summary";
+import { Card, CardContent } from "@/components/ui/card";
 
 const repository = new SupabaseAssetRepository();
 
@@ -25,7 +26,25 @@ export function AssetsDashboard() {
     setAssets((current) => [asset, ...current]);
   }
 
-  return <div className="mt-8 space-y-8"><PortfolioSummary totalValue={totalValue} /><AssetForm onSubmit={addAsset} />
-    <section className="space-y-3"><div><h2 className="text-lg font-semibold">자산 목록</h2><p className="text-sm text-muted-foreground">총 {assets.length}개 자산</p></div>{error ? <p className="text-sm text-destructive" role="alert">{error}</p> : isLoading ? <p className="text-sm text-muted-foreground">자산을 불러오는 중...</p> : <AssetTable assets={assets} />}</section>
-  </div>;
+  return (
+    <div className="mt-8 space-y-8 lg:mt-10 lg:space-y-10">
+      <PortfolioSummary totalValue={totalValue} />
+      <div className="grid gap-8 lg:grid-cols-12">
+        <div className="lg:col-span-4">
+          <AssetForm onSubmit={addAsset} />
+        </div>
+        <section className="lg:col-span-8">
+          <Card>
+            <CardContent className="space-y-5 p-5 sm:p-6 lg:p-8">
+              <div>
+                <h2 className="text-lg font-semibold">자산 목록</h2>
+                <p className="text-sm text-muted-foreground">총 {assets.length}개 자산</p>
+              </div>
+              {error ? <p className="text-sm text-destructive" role="alert">{error}</p> : isLoading ? <p className="text-sm text-muted-foreground">자산을 불러오는 중...</p> : <AssetTable assets={assets} />}
+            </CardContent>
+          </Card>
+        </section>
+      </div>
+    </div>
+  );
 }

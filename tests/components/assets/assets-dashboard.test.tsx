@@ -6,7 +6,7 @@ import { AssetTable } from "@/components/assets/asset-table";
 afterEach(cleanup);
 
 describe("AssetTable", () => {
-  it("renders assets inside a horizontally scrollable mobile container", () => {
+  it("preserves every asset column in a scrollable minimum-width table", () => {
     const asset = {
       id: "asset-1",
       userId: "user-1",
@@ -22,5 +22,6 @@ describe("AssetTable", () => {
     render(<AssetTable assets={[asset]} />);
 
     expect(screen.getByTestId("asset-table-scroll").className).toContain("overflow-x-auto");
+    expect(screen.getByRole("table").className).toContain("min-w-[760px]");
   });
 });
