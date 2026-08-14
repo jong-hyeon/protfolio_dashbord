@@ -4,6 +4,14 @@ Next.js, TypeScript, Tailwind CSS, shadcn/ui, Supabase로 만드는 개인 투�
 
 ## 처음 실행하기
 
+이 프로젝트는 Next.js 16을 사용하므로 **Node.js 20.9 이상**이 필요합니다. 먼저 설치된 버전을 확인하세요.
+
+```bash
+node --version
+```
+
+`v20.9.0`보다 낮다면 Node.js를 업데이트한 뒤 아래 명령을 실행합니다.
+
 ```bash
 npm install
 cp .env.example .env.local
