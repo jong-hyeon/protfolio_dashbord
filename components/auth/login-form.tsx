@@ -7,6 +7,7 @@ import { FormEvent, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { getAuthErrorMessage } from "@/lib/auth/get-auth-error-message";
 import { createClient } from "@/lib/supabase/client";
 
 export function LoginForm() {
@@ -19,14 +20,19 @@ export function LoginForm() {
     setIsSubmitting(true);
     setError(undefined);
     const formData = new FormData(event.currentTarget);
-    const { error: signInError } = await createClient().auth.signInWithPassword({
-      email: String(formData.get("email")),
-      password: String(formData.get("password")),
-    });
-    setIsSubmitting(false);
-    if (signInError) return setError(signInError.message);
-    router.replace("/dashboard");
-    router.refresh();
+    try {
+      const { error: signInError } = await createClient().auth.signInWithPassword({
+        email: String(formData.get("email")),
+        password: String(formData.get("password")),
+      });
+      if (signInError) return setError(getAuthErrorMessage(signInError));
+      router.replace("/dashboard");
+      router.refresh();
+    } catch (error) {
+      setError(getAuthErrorMessage(error));
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return <form className="space-y-5" onSubmit={handleSubmit}>

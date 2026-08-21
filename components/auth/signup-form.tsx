@@ -6,6 +6,7 @@ import { FormEvent, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { getAuthErrorMessage } from "@/lib/auth/get-auth-error-message";
 import { createClient } from "@/lib/supabase/client";
 
 export function SignupForm() {
@@ -17,13 +18,18 @@ export function SignupForm() {
     event.preventDefault();
     setIsSubmitting(true); setError(undefined); setMessage(undefined);
     const formData = new FormData(event.currentTarget);
-    const { error: signUpError } = await createClient().auth.signUp({
-      email: String(formData.get("email")), password: String(formData.get("password")),
-      options: { emailRedirectTo: `${window.location.origin}/dashboard` },
-    });
-    setIsSubmitting(false);
-    if (signUpError) return setError(signUpError.message);
-    setMessage("가입 확인 이메일을 보냈습니다. 받은 편지함을 확인해 주세요.");
+    try {
+      const { error: signUpError } = await createClient().auth.signUp({
+        email: String(formData.get("email")), password: String(formData.get("password")),
+        options: { emailRedirectTo: `${window.location.origin}/dashboard` },
+      });
+      if (signUpError) return setError(getAuthErrorMessage(signUpError));
+      setMessage("가입 확인 이메일을 보냈습니다. 받은 편지함을 확인해 주세요.");
+    } catch (error) {
+      setError(getAuthErrorMessage(error));
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return <form className="space-y-5" onSubmit={handleSubmit}>
