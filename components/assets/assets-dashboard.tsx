@@ -34,10 +34,11 @@ export function AssetsDashboard() {
           <AssetForm onSubmit={addAsset} />
         </div>
         <section className="min-w-0 lg:col-span-8">
-          <Card>
+          <Card className="border-t-4 border-t-stark-violet">
             <CardContent className="space-y-5 p-5 sm:p-6 lg:p-8">
               <div>
-                <h2 className="text-lg font-semibold">자산 목록</h2>
+                <p className="font-mono text-xs font-medium tracking-[0.16em] text-stark-violet uppercase">Asset list</p>
+                <h2 className="mt-2 text-2xl font-bold tracking-tight text-stark-navy">자산 목록</h2>
                 <p className="text-sm text-muted-foreground">총 {assets.length}개 자산</p>
               </div>
               {error ? <p className="text-sm text-destructive" role="alert">{error}</p> : isLoading ? <p className="text-sm text-muted-foreground">자산을 불러오는 중...</p> : <AssetTable assets={assets} />}

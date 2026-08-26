@@ -12,15 +12,17 @@ export default async function DashboardPage() {
   if (!user) redirect("/login");
 
   return (
-    <main className="mx-auto min-h-screen w-full max-w-screen-2xl px-4 py-6 sm:px-6 lg:px-10 lg:py-10">
-      <header className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <p className="text-sm text-muted-foreground">개인 투자 포트폴리오</p>
-          <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">대시보드</h1>
+    <main className="min-h-screen bg-stark-cream">
+      <header className="bg-stark-navy text-white">
+        <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-6 px-4 py-8 sm:flex-row sm:items-end sm:justify-between sm:px-6 lg:px-10 lg:py-10">
+          <div>
+            <p className="font-mono text-xs font-medium tracking-[0.18em] text-stark-yellow uppercase">개인 투자 포트폴리오</p>
+            <h1 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl"><span className="relative inline-block"><span className="relative z-10">대시보드</span><span aria-hidden="true" className="absolute inset-x-0 bottom-1 z-0 h-3 bg-stark-yellow" /></span></h1>
+          </div>
+          <LogoutButton />
         </div>
-        <LogoutButton />
       </header>
-      <AssetsDashboard />
+      <div className="mx-auto w-full max-w-[1200px] px-4 py-8 sm:px-6 lg:px-10 lg:py-10"><AssetsDashboard /></div>
     </main>
   );
 }

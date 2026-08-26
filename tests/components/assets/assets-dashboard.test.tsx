@@ -21,6 +21,7 @@ describe("AssetTable", () => {
 
     render(<AssetTable assets={[asset]} />);
 
+    expect(screen.getByTestId("asset-table-scroll").className).toContain("bg-card");
     expect(screen.getByTestId("asset-table-scroll").className).not.toContain("overflow-x-auto");
     expect(document.querySelector('[data-slot="table-container"]')?.className).toContain("overflow-x-auto");
     expect(screen.getByRole("table").className).toContain("min-w-[760px]");
